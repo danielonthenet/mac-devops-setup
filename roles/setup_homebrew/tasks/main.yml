@@ -102,8 +102,7 @@
   homebrew_cask:
     name: "{{ item }}"
     state: present
-    install_options: 
-      appdir: "{{ homebrew_cask_appdir }}"
+    install_options: 'appdir=/Applications'
   with_items: "{{ homebrew_cask_apps }}"
 
 - name: Check for Brewfile.
@@ -113,5 +112,6 @@
 
 - name: Install from Brewfile.
   command: "brew bundle"
-  chdir: "{{ homebrew_brewfile_dir }}"
+  args:
+    chdir: "{{ homebrew_brewfile_dir }}"
   when: homebrew_brewfile.stat.exists and homebrew_use_brewfile

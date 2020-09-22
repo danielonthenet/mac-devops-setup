@@ -22,7 +22,7 @@
   shell: ~/.config/powerlinefonts/install.sh 
   args: 
     chdir: '~/.config/powerlinefonts'
-  when: fontCloned|success
+  when: fontCloned is succeeded
   become: no
 
 - name: iTerm custom settings file
